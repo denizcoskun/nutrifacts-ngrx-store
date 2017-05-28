@@ -11,7 +11,8 @@ import {
   MdSelectModule,
   MdTabsModule,
   MdToolbarModule,
-  MdSnackBarModule
+  MdSnackBarModule,
+  MdAutocompleteModule
 } from '@angular/material';
 
 
@@ -29,6 +30,7 @@ const modules = [
   MdSnackBarModule,
   MdTabsModule,
   MdToolbarModule,
+  MdAutocompleteModule
 ];
 
 @NgModule({

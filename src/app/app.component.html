@@ -1,5 +1,13 @@
 <md-toolbar color="primary">My App</md-toolbar>
 
-<div fxLayoutAlign="center" [style.padding.px]="16">
-  <button md-raised-button>{{title}}</button>
-</div>
+<div fxLayout="column"fxLayoutAlign="center" [style.padding.px]="16">
+
+  <md-input-container [style.fontSize.px]="18" form>
+    <input #input mdInput placeholder="Search foods..." autofocus [mdAutocomplete]="auto">
+  </md-input-container>
+  <md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let item of results" [value]="item.name">
+    {{ item.name }}
+  </md-option>
+</md-autocomplete>
+  </div>
