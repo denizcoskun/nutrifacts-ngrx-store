@@ -1,13 +1,35 @@
 <md-toolbar color="primary">My App</md-toolbar>
 
-<div fxLayout="column"fxLayoutAlign="center" [style.padding.px]="16">
+<div fxLayout="column" fxLayoutAlign="center" [style.padding.px]="16">
 
   <md-input-container [style.fontSize.px]="18" form>
-    <input #input mdInput placeholder="Search foods..." autofocus [mdAutocomplete]="auto">
+    <input #input mdInput placeholder="Search foods..." autofocus>
   </md-input-container>
-  <md-autocomplete #auto="mdAutocomplete">
-  <md-option *ngFor="let item of results" [value]="item.name">
-    {{ item.name }}
-  </md-option>
-</md-autocomplete>
-  </div>
+
+    <md-list *ngIf="!itemDetail">
+  <md-list-item class="search-result-item" *ngFor="let result of results" (click)="getNutrients(result.id)">
+  
+  <span class="search-result-item-name">{{result.name}}</span>
+     <button md-icon-button class="search-result-add-button">
+        <md-icon>add</md-icon>
+     </button>
+  </md-list-item>
+  </md-list>
+
+
+  <span *ngIf="itemDetail" >
+<span (click)="addBasket(itemDetail)">
+<div *ngFor="let nutrients of itemDetail.nutrients">
+    {{nutrients.nutrient}} : {{nutrients.value}}
+    
+    </div>
+  </span>
+    <span (click)="removeBasket(itemDetail)">remove</span>
+
+</span>
+
+<span *ngFor="let food of basket | async">
+  {{food.name}}
+</span>
+
+</div>

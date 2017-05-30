@@ -8,3 +8,16 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+.search-result-item:hover { 
+  cursor: pointer;
+  background-color: #E0E0E0;
+}
+
+.search-result-item-name {
+    max-width: 80%;
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: auto;
+}

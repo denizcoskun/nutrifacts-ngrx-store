@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { NutrionService } from './nutrition.service';
+import { NutritionService } from './nutrition.service';
 
 describe('NutrionServiceService', () => {
   beforeEach(() => {
@@ -9,7 +9,7 @@ describe('NutrionServiceService', () => {
     });
   });
 
-  it('should ...', inject([NutritionService], (service: NutrionService) => {
+  it('should ...', inject([NutritionService], (service: NutritionService) => {
     expect(service).toBeTruthy();
   }));
 });
