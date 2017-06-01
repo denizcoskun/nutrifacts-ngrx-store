@@ -1,3 +1,17 @@
-<p>
-  food-detail works!
-</p>
+<div fxLayout="column" fxLayoutAlign="center">
+  <div fxFlex class="subheader">
+    <span>Food Detail</span>
+  </div>
+<div *ngIf="!(loading | async); else progress">
+
+<h2>{{food?.name}}</h2>
+<div *ngFor="let nutrients of food?.nutrients ">
+    {{nutrients.nutrient}}({{nutrients.unit}}) : {{nutrients.gm}}
+</div>
+    <button md-raised-button (click)="addToList(food)" >Add to Food List</button>
+</div>
+
+<ng-template #progress>
+<md-progress-bar mode="indeterminate"></md-progress-bar>
+</ng-template>
+</div>

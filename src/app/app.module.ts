@@ -6,11 +6,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module'
 import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterModule, Routes } from '@angular/router';
 
 import { NutritionService } from './services/nutrition.service';
 import { FoodListComponent } from './food-list/food-list.component';
 import { FoodDetailComponent } from './food-detail/food-detail.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+
+const routes: Routes = [ 
+                {path: '', component: SearchResultsComponent},
+                { path: 'results', component: SearchResultsComponent },
+                { path: 'food-detail/:id', component: FoodDetailComponent},
+                { path: 'myfoods', component: FoodListComponent }
+              ];
 
 @NgModule({
   declarations: [
@@ -26,7 +34,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [NutritionService],
   bootstrap: [AppComponent]

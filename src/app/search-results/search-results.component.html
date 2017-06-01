@@ -1,3 +1,14 @@
-<p>
-  search-results works!
-</p>
+<div fxLayout="column" fxLayoutAlign="center">
+  <div fxFlex class="subheader">
+    <span>Results</span>
+  </div>
+
+
+<md-list>
+  <md-list-item class="search-result-item" *ngFor="let result of results | async" [routerLink]="['/food-detail', result.id]"  >
+  
+  <span class="search-result-item-name">{{result.name}}</span>
+
+  </md-list-item>
+  </md-list>
+</div>

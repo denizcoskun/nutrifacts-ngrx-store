@@ -1,35 +1,25 @@
-<md-toolbar color="primary">My App</md-toolbar>
+<div fxFlex fxLayout="column">
 
-<div fxLayout="column" fxLayoutAlign="center" [style.padding.px]="16">
-
-  <md-input-container [style.fontSize.px]="18" form>
-    <input #input mdInput placeholder="Search foods..." autofocus>
-  </md-input-container>
-
-    <md-list *ngIf="!itemDetail">
-  <md-list-item class="search-result-item" *ngFor="let result of results" (click)="getNutrients(result.id)">
+<md-toolbar color="primary">
   
-  <span class="search-result-item-name">{{result.name}}</span>
-     <button md-icon-button class="search-result-add-button">
-        <md-icon>add</md-icon>
-     </button>
-  </md-list-item>
-  </md-list>
+  <span [style.margin]="'auto'">My App</span>
+<md-toolbar-row>
+  <div class="search-input-container">
+    <input class="search-input" #input mdInput placeholder="Search foods..." autofocus [routerLink]="['/']">
+  </div>
+  </md-toolbar-row>
+</md-toolbar>
 
 
-  <span *ngIf="itemDetail" >
-<span (click)="addBasket(itemDetail)">
-<div *ngFor="let nutrients of itemDetail.nutrients">
-    {{nutrients.nutrient}} : {{nutrients.value}}
-    
-    </div>
-  </span>
-    <span (click)="removeBasket(itemDetail)">remove</span>
 
-</span>
+<div fxLayout="column">
 
-<span *ngFor="let food of basket | async">
-  {{food.name}}
-</span>
+  
+<md-progress-bar *ngIf="this.loading | async" mode="indeterminate"></md-progress-bar>
 
+
+<router-outlet></router-outlet>
+
+
+</div>
 </div>

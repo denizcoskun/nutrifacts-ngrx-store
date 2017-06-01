@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import {FormControl} from '@angular/forms';
 
-
 import { NutritionService } from './services/nutrition.service';
 import { Food } from './models/food';
 import { SearchResult } from './models/search-result';
@@ -15,9 +14,10 @@ export class AppComponent implements OnInit {
   @ViewChild('input') input: ElementRef;
 
   title = 'app works!';
-  results: SearchResult[];
+  public results =  new BehaviorSubject<SearchResult[]>([]);
   itemDetail: Food;
-  basket = new BehaviorSubject<Food[]>([]);
+  loading = new BehaviorSubject<Boolean>(false);
+  public basket = new BehaviorSubject<Food[]>([]);
 
   constructor(private nutritionService: NutritionService) { }
 
@@ -26,10 +26,12 @@ export class AppComponent implements OnInit {
       .map((e: any) => e.target.value)
       .filter((text: string) => text.length > 1)
       .debounceTime(250)
+      .do(() => this.loading.next(true))
       .map((query: string) => this.nutritionService.search(query))
       .switch()
       .subscribe((results: SearchResult[]) => {
-        this.results = results;
+        this.results.next(results);
+        this.loading.next(false);
       });
   }
 
