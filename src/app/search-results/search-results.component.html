@@ -1,9 +1,10 @@
 <div fxLayout="column" fxLayoutAlign="center">
   <div fxFlex class="subheader">
-    <span>Results</span>
+    <span style="font-weight:500">Results</span>
   </div>
+<md-progress-bar *ngIf="loading | async" mode="indeterminate"></md-progress-bar>
 
-
+<div class="search-resuts">
 <md-list>
   <md-list-item class="search-result-item" *ngFor="let result of results | async" [routerLink]="['/food-detail', result.id]"  >
   
@@ -11,4 +12,5 @@
 
   </md-list-item>
   </md-list>
+</div>
 </div>

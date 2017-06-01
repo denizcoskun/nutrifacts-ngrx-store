@@ -13,8 +13,11 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 export class SearchResultsComponent implements OnInit {
 
   results: BehaviorSubject<SearchResult[]>;
+  loading: BehaviorSubject<Boolean>;
+  
   constructor(private app: AppComponent) {
     this.results = this.app.results;
+    this.loading = this.app.loading;
    }
 
   ngOnInit() {

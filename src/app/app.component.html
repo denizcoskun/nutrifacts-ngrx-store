@@ -2,7 +2,7 @@
 
 <md-toolbar color="primary">
   
-  <span [style.margin]="'auto'">My App</span>
+  <span>nutriFacts.io</span>
 <md-toolbar-row>
   <div class="search-input-container">
     <input class="search-input" #input mdInput placeholder="Search foods..." autofocus [routerLink]="['/']">
@@ -13,10 +13,6 @@
 
 
 <div fxLayout="column">
-
-  
-<md-progress-bar *ngIf="this.loading | async" mode="indeterminate"></md-progress-bar>
-
 
 <router-outlet></router-outlet>
 

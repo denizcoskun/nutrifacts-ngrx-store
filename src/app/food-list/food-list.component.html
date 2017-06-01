@@ -1,3 +1,25 @@
-<div *ngFor="let food of foodList | async">
-<span>{{food.name}}</span>
+<div fxLayout="column">
+<div fxFlex class="subheader">
+    <span style="font-weight:500">My Food List</span>
+  </div>
+
+
+<md-list>
+  <md-list-item *ngFor="let food of foodList | async">
+    <div>
+    <span md-line style="font-weight:500">{{food.name}}</span>
+    <span md-line> Energy: {{food.nutrients[1].gm}} kJ
+    </span>
+    </div>
+    <div style="margin-left:auto" md-ripple>
+     <md-icon>more_vert</md-icon>
+    </div>
+  </md-list-item>
+</md-list>
+
+<div *ngIf="!(foodList | async).length" fxLayout="column" fxLayoutAlign="start center">
+  <span style="font-size: 24px; margin: 18px; font-weight: 300">There is no food in your list</span>
+  <span>Search some food e.g. Yogurt, Beef...</span>
+  <md-icon style="font-size:72px; height:72px; width: 72px; color:grey; margin: 24px;">search</md-icon>
+</div>
 </div>

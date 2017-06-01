@@ -1,17 +1,22 @@
 <div fxLayout="column" fxLayoutAlign="center">
-  <div fxFlex class="subheader">
-    <span>Food Detail</span>
+  <div class="subheader">
+    <div fxFlex fxLayoutAlign="space-between">
+    <span [style.font-weight]="500">Nutrition Facts</span>
+    <span></span>
+    <span>(per 100 g)</span>
+    </div>
   </div>
-<div *ngIf="!(loading | async); else progress">
+<div fxLayout="column" fxLayoutAlign="start center" *ngIf="!(loading | async)">
 
-<h2>{{food?.name}}</h2>
-<div *ngFor="let nutrients of food?.nutrients ">
-    {{nutrients.nutrient}}({{nutrients.unit}}) : {{nutrients.gm}}
-</div>
-    <button md-raised-button (click)="addToList(food)" >Add to Food List</button>
-</div>
+<div class="food-name">{{food?.name}}</div>
 
-<ng-template #progress>
-<md-progress-bar mode="indeterminate"></md-progress-bar>
-</ng-template>
+<table class="nutrition-facts">
+  <tr class="row" *ngFor="let nutrients of food?.nutrients ">
+    <th class="left">{{nutrients.nutrient}}</th>
+    <th class="right">{{nutrients.gm}} {{nutrients.unit}}</th>
+  </tr>
+</table>
+
+<button md-fab  (click)="addToList(food)" [style.margin-top.px]="16"><md-icon>add</md-icon></button>
+
 </div>

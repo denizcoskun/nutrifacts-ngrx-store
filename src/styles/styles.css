@@ -9,6 +9,8 @@ html, body {
     font: 100%/1.5 Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background: #fafafa;
+    color: rgba(0, 0, 0, 0.87)
 }
 
 .search-input-container {
@@ -39,6 +41,10 @@ html, body {
     height: 34px !important;
 }
 
+.search-results {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 .search-result-item:hover { 
   cursor: pointer;
   background-color: #E0E0E0;
@@ -54,6 +60,7 @@ html, body {
 
 
 .subheader {
+  height: 48px;
   padding: 16px 16px 8px;
   background: #1565c0;
   color: rgba(255, 255, 255, 0.87);
