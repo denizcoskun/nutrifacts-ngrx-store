@@ -51,11 +51,15 @@ html, body {
 }
 
 .search-result-item-name {
-    max-width: 80%;
+    max-width: 90vw;
     white-space: pre;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-right: auto;
+}
+
+md-list-item span {
+    max-width: 80vw;
 }
 
 

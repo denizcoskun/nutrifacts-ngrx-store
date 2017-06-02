@@ -13,11 +13,12 @@ import { FoodListComponent } from './food-list/food-list.component';
 import { FoodDetailComponent } from './food-detail/food-detail.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 
-const routes: Routes = [ 
-                {path: '', component: SearchResultsComponent},
-                { path: 'results', component: SearchResultsComponent },
+const routes: Routes = [
+                {path: '', pathMatch:'full', redirectTo: 'myfoods' },
+                { path: 'search', component: SearchResultsComponent },
                 { path: 'food-detail/:id', component: FoodDetailComponent},
-                { path: 'myfoods', component: FoodListComponent }
+                { path: 'myfoods', component: FoodListComponent },
+                { path: '**', pathMatch:'full', redirectTo: 'myfoods' }
               ];
 
 @NgModule({
