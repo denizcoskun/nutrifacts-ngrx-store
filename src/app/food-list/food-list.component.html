@@ -5,14 +5,14 @@
 
 
 <md-list>
-  <md-list-item *ngFor="let food of foodList | async">
+  <md-list-item *ngFor="let food of foodList | async; let i = index;" [routerLink]="['/myfoods', i]">
     <div>
     <span md-line style="font-weight:500">{{food.name}}</span>
     <span md-line> Energy: {{food.nutrients[1].gm}} kJ
     </span>
     </div>
     <div style="margin-left:auto" md-ripple>
-     <md-icon>more_vert</md-icon>
+     <md-icon style="color: grey">delete</md-icon>
     </div>
   </md-list-item>
 </md-list>

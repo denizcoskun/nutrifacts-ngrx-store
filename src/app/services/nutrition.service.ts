@@ -37,7 +37,7 @@ export class NutritionService {
     : []);
   }
 
-  getNutrients(query: string): any {
+  getNutrients(query: string): Observable<Food> {
     const url = 'https://api.nal.usda.gov/ndb/nutrients/?format=json&';
     const params: string = [
       `ndbno=${query}`,

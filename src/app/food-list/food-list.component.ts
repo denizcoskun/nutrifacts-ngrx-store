@@ -3,6 +3,8 @@ import { AppComponent } from "../app.component";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Food } from ".././models/food";;
+import { Router } from "@angular/router";
+
 @Component({
   selector: 'app-food-list',
   templateUrl: './food-list.component.html',
@@ -10,10 +12,11 @@ import { Food } from ".././models/food";;
 })
 export class FoodListComponent implements OnInit {
   foodList: BehaviorSubject<Food[]>;
-  constructor(private app: AppComponent) { }
+  constructor(private app: AppComponent, private router: Router) { }
 
   ngOnInit() {
     this.foodList = this.app.basket;
   }
+
 
 }
