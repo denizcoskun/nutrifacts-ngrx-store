@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from "../app.component";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Food } from ".././models/food";;
 import { Router } from "@angular/router";
+import { StoreService } from ".././services/store.service";
 
 @Component({
   selector: 'app-food-list',
@@ -12,11 +12,14 @@ import { Router } from "@angular/router";
 })
 export class FoodListComponent implements OnInit {
   foodList: BehaviorSubject<Food[]>;
-  constructor(private app: AppComponent, private router: Router) { }
+  constructor(private store: StoreService, private router: Router) { }
 
   ngOnInit() {
-    this.foodList = this.app.basket;
+    this.foodList = this.store.basket;
   }
 
+  removeFood(food: Food) {
+    this.store.removeBasket(food);
+  }
 
 }

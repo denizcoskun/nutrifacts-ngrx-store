@@ -1,0 +1,30 @@
+tr {
+    height: 32px;
+}
+
+th {
+    font-weight: normal;
+}
+
+th.left {
+    text-align: left;
+}
+
+th.right {
+    text-align: right;
+    font-weight: 500;
+}
+
+.food-name {
+    font-size: 20px;
+    text-align: center;
+    min-height: 40px;
+    border-bottom: 1px solid;
+    margin: 24px;
+    font-weight: 500;
+}
+.nutrition-facts {
+    margin: auto;
+    width: 300px;
+}
+

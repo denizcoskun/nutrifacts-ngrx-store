@@ -1,38 +1,40 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import {FormControl} from '@angular/forms';
 
 import { NutritionService } from './services/nutrition.service';
+import { StoreService } from './services/store.service';
+
 import { Food } from './models/food';
 import { SearchResult } from './models/search-result';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   @ViewChild('input') input: ElementRef;
 
   title = 'app works!';
-  public results =  new BehaviorSubject<SearchResult[]>([]);
+  results: BehaviorSubject<SearchResult[]>;
   itemDetail: Food;
-  loading = new BehaviorSubject<Boolean>(false);
+  loading: BehaviorSubject<Boolean>;
   public basket = new BehaviorSubject<Food[]>([]);
-
-  constructor(private nutritionService: NutritionService) { }
+  constructor(private nutritionService: NutritionService, private store: StoreService) {
+   }
 
   ngOnInit(): void {
+    this.results = this.store.results;
+    this.loading = this.store.loading;
+
     Observable.fromEvent(this.input.nativeElement, 'keyup')
       .map((e: any) => e.target.value)
       .filter((text: string) => text.length > 1)
       .debounceTime(250)
-      .do(() => this.loading.next(true))
-      .map((query: string) => this.nutritionService.search(query))
+      .do((query: string) => this.store.search(query))
       .switch()
-      .subscribe((results: SearchResult[]) => {
-        this.results.next(results);
-        this.loading.next(false);
-      });
+      .subscribe();
   }
 
   getNutrients(ref: string): void {

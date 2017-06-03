@@ -14,14 +14,15 @@ import { StoreService } from './services/store.service';
 import { FoodListComponent } from './food-list/food-list.component';
 import { FoodDetailComponent } from './food-detail/food-detail.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { FoodResultComponent } from './search-results/food-result/food-result.component';
 
 const routes: Routes = [
                 {path: '', pathMatch:'full', redirectTo: 'myfoods' },
                 { path: 'search', component: SearchResultsComponent },
-                { path: 'food-detail/:item', component: FoodDetailComponent},
+                { path: 'search/:id', component: FoodResultComponent},
                 { path: 'myfoods', component: FoodListComponent },
                 { path: 'myfoods/:id', component: FoodDetailComponent},
-                { path: '**', pathMatch:'full', redirectTo: 'myfoods' }
+                { path: '**', pathMatch: 'full', redirectTo: 'myfoods' }
               ];
 
 @NgModule({
@@ -29,7 +30,8 @@ const routes: Routes = [
     AppComponent,
     FoodListComponent,
     FoodDetailComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    FoodResultComponent
   ],
   imports: [
     BrowserModule,

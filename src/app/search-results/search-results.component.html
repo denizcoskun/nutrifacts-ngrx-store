@@ -7,7 +7,7 @@
 <div class="search-results">
 
 <md-list>
-  <md-list-item class="search-result-item" *ngFor="let result of results | async" [routerLink]="['/food-detail', result.id]"  >
+  <md-list-item class="search-result-item" *ngFor="let result of results | async" [routerLink]="['/search', result.id]"  >
   
   <span class="search-result-item-name">{{result.name}}</span>
 

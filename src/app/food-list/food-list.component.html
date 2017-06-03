@@ -4,7 +4,7 @@
   </div>
 
 
-<md-list>
+<md-list *ngIf="(foodList | async).length; else notfound">
   <md-list-item *ngFor="let food of foodList | async; let i = index;" [routerLink]="['/myfoods', i]">
     <div>
     <span md-line style="font-weight:500">{{food.name}}</span>
@@ -12,14 +12,14 @@
     </span>
     </div>
     <div style="margin-left:auto" md-ripple>
-     <md-icon style="color: grey">delete</md-icon>
+     <md-icon style="color: grey" (click)="removeFood(food)">delete</md-icon>
     </div>
   </md-list-item>
 </md-list>
-
-<div *ngIf="!(foodList | async).length" fxLayout="column" fxLayoutAlign="start center">
-  <span style="font-size: 24px; margin: 18px; font-weight: 300">There is no food in your list</span>
-  <span>Search some food e.g. Yogurt, Beef...</span>
-  <md-icon style="font-size:72px; height:72px; width: 72px; color:grey; margin: 24px;">search</md-icon>
+<ng-template #notfound>
+<div  fxLayout="column" fxLayoutAlign="start center">
+  <span style="font-size: 16px; margin: 32px 24px 12px; font-weight: 400">Search some food e.g. yogurt, beef...</span>
+  <md-icon style="font-size:64px; height:64px; width: 64px; color:grey">search</md-icon>
 </div>
+</ng-template>
 </div>

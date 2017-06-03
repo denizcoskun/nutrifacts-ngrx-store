@@ -10,7 +10,8 @@ html, body {
     margin: 0;
     padding: 0;
     background: #fafafa;
-    color: rgba(0, 0, 0, 0.87)
+    color: rgba(0, 0, 0, 0.87);
+    height: 100vh;
 }
 
 .search-input-container {

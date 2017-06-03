@@ -9,21 +9,41 @@ export class StoreService {
 
   public results =  new BehaviorSubject<SearchResult[]>([]);
   public basket = new BehaviorSubject<Food[]>([]);
+  public loading = new BehaviorSubject<Boolean>(false);
+  public selectedFood = new BehaviorSubject<Food>(new Food({ndbno: '', name: '', nutrients: ''}));
 
-  constructor(private nutritionService: NutritionService) { }
-
-  getNutrients(ref: string): Observable<Food> {
-   return this.nutritionService.getNutrients(ref);
+  constructor(private nutritionService: NutritionService) { 
   }
 
-  addBasket(item: Food) {
-    this.basket.next([...this.basket.value, item]);
+  search(query) {
+    this.loading.next(true);
+    this.nutritionService.search(query)
+    .subscribe((results) => {
+      this.results.next(results);
+      this.loading.next(false);
+    }, (error) => {
+      console.log(error);
+      this.loading.next(false);
+    })
+  }
+
+  getNutrients(id) {
+    this.nutritionService.getNutrients(id)
+    .subscribe((food: Food) => this.selectedFood.next(food));
+  }
+
+  getFoodDetail(id) {
+      this.selectedFood.next(this.basket.value[id]);
+  }
+
+  addBasket() {
+    this.basket.next([...this.basket.value, this.selectedFood.value]);
   }
 
   removeBasket(food: Food) {
     this.basket.next(this.basket.value.filter(item => {
       return item.id !== food.id;
-    }))
+    }));
   }
 
 }

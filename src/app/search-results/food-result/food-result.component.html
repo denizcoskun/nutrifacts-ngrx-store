@@ -6,7 +6,7 @@
     <span>(per 100 g)</span>
     </div>
   </div>
-<div fxLayout="column" fxLayoutAlign="start center" *ngIf="food | async as food; else notfound">
+<div fxLayout="column" fxLayoutAlign="start center" *ngIf="food | async as food; else notfound">
 
 <div class="food-name">{{food?.name}}</div>
 
@@ -17,8 +17,8 @@
   </tr>
 </table>
 
-<button md-fab color="warn" (click)="removeFromList(food)" [style.margin-top.px]="16">
-  <md-icon>clear</md-icon></button>
+<button md-fab color="primary" (click)="addToList()" [style.margin-top.px]="16">
+  <md-icon>add</md-icon></button>
 </div>
 
 <ng-template #notfound>
