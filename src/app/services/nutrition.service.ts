@@ -16,19 +16,18 @@ export class NutritionService {
 
   }
 
-  search(query: string): Observable<SearchResult[]> {
+  searchFood(query: string): Observable<SearchResult[]> {
     const url = 'https://api.nal.usda.gov/ndb/search/?format=json&';
     const params: string = [
       `q=${query}`,
-      `sort=r`,
-      `max=25`,
-      `offset=0`,
-      `ds=Standard%20Reference`,
-      `api_key=${this.apiKey}`
+      `sort=r`, // sort by relevance 
+      `max=25`, // maximum number of results
+      `offset=0`, // beginning row in the result set to begin
+      `ds=Standard%20Reference`, // 'Standard Reference' or 'Branded Food Products
+      `api_key=${this.apiKey}` // Your api key
     ].join('&');
 
     const queryUrl = `${url}${params}`;
-    console.log(queryUrl);
 
     return this.http.get(queryUrl).map((response: Response) =>
       response.json().list ? response.json().list.item.map(item => {
@@ -37,24 +36,23 @@ export class NutritionService {
     : []);
   }
 
-  getNutrients(query: string): Observable<Food> {
+  fetchFood(query: string): Observable<Food> {
     const url = 'https://api.nal.usda.gov/ndb/nutrients/?format=json&';
     const params: string = [
       `ndbno=${query}`,
-      `nutrients=255`,
-      `nutrients=208`,
-      `nutrients=268`,
-      `nutrients=203`,
-      `nutrients=204`,
-      `nutrients=205`,
-      `nutrients=268`,
-      `nutrients=291`,
-      `nutrients=269`,
+      `nutrients=255`, // Water
+      `nutrients=208`, // Energy
+      `nutrients=203`, // Protein
+      `nutrients=204`, // Total lipid
+      `nutrients=205`, // Carbohydrate
+      `nutrients=268`, // Energy
+      `nutrients=269`, // Sugars
+      `nutrients=291`, // Fiber
       `api_key=${this.apiKey}`
     ].join('&');
 
     const queryUrl = `${url}${params}`;
-    console.log(queryUrl);
+
     return this.http.get(queryUrl)
     .map(this.extractData)
     .catch(this.handleError)

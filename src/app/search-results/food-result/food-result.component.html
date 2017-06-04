@@ -1,30 +1,29 @@
 <div fxLayout="column" fxLayoutAlign="center">
   <div class="subheader">
     <div fxLayoutAlign="space-between">
-    <span [style.font-weight]="500">Nutrition Facts</span>
-    <span></span>
-    <span>(per 100 g)</span>
+      <span [style.font-weight]="500">Nutrition Facts</span>
+      <span></span>
+      <span>(per 100 g)</span>
     </div>
   </div>
-<div fxLayout="column" fxLayoutAlign="start center" *ngIf="food | async as food; else notfound">
+  <div fxLayout="column" fxLayoutAlign="start center" *ngIf="food | async as food; else notfound">
 
-<div class="food-name">{{food?.name}}</div>
+    <div class="food-name">{{food?.name}}</div>
 
-<table class="nutrition-facts">
-  <tr class="row" *ngFor="let nutrients of food?.nutrients ">
-    <th class="left">{{nutrients.nutrient}}</th>
-    <th class="right">{{nutrients.gm}} {{nutrients.unit}}</th>
-  </tr>
-</table>
+    <table class="nutrition-facts">
+      <tr class="row" *ngFor="let nutrients of food?.nutrients ">
+        <th class="left">{{nutrients.nutrient}}</th>
+        <th class="right">{{nutrients.gm}} {{nutrients.unit}}</th>
+      </tr>
+    </table>
 
-<button md-fab color="primary" (click)="addToList()" [style.margin-top.px]="16">
+    <button md-fab color="primary" (click)="addToList()" [style.margin-top.px]="16">
   <md-icon>add</md-icon></button>
-</div>
-
-<ng-template #notfound>
-<div fxLayout="column" fxLayoutAlign="start center">
- <span style="margin: 24px">Nothing found</span>
   </div>
-</ng-template>
+  <ng-template #notfound>
+    <div fxLayout="column" fxLayoutAlign="start center">
+      <span style="margin: 24px">Nothing found</span>
+    </div>
+  </ng-template>
 
 </div>

@@ -2,16 +2,16 @@
   <div class="subheader">
     <span style="font-weight:500">Results</span>
   </div>
-<md-progress-bar *ngIf="loading | async" mode="indeterminate"></md-progress-bar>
+  <md-progress-bar *ngIf="loading | async" mode="indeterminate"></md-progress-bar>
 
-<div class="search-results">
+  <div class="search-results">
 
-<md-list>
-  <md-list-item class="search-result-item" *ngFor="let result of results | async" [routerLink]="['/search', result.id]"  >
-  
-  <span class="search-result-item-name">{{result.name}}</span>
+    <md-list>
+      <md-list-item class="search-result-item" *ngFor="let result of results | async" [routerLink]="['/search', result.id]">
 
-  </md-list-item>
-  </md-list>
-</div>
+        <span class="search-result-item-name">{{result.name}}</span>
+
+      </md-list-item>
+    </md-list>
+  </div>
 </div>

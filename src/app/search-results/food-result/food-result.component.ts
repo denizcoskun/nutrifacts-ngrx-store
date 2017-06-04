@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { AppComponent } from '../../app.component';
 import { Router } from '@angular/router';
 import { Food } from '../../models/food';
-import { NutritionService } from '../../services/nutrition.service';
 import { StoreService } from '../../services/store.service';
+
+import { Store } from "@ngrx/store";
+import * as fromRoot from "../.././store/reducer";
+import * as Actions from "../.././store/actions";
 
 @Component({
   selector: 'food-result',
@@ -16,25 +17,24 @@ import { StoreService } from '../../services/store.service';
 })
 export class FoodResultComponent implements OnInit {
 
-  food: BehaviorSubject<Food>;
-  loading = new BehaviorSubject<Boolean>(false);
+  food: Observable<Food>;
+  loading: Observable<Boolean>;
   constructor(private route: ActivatedRoute, private router: Router,
-              private nutritionService: NutritionService, private app: AppComponent,
-              private store: StoreService) {
+              private store: Store<fromRoot.State>) {
 
   }
 
   ngOnInit() {
-    this.food = this.store.selectedFood;
-
+    this.food = this.store.select(state => state.selectedFood);
+    this.loading = this.store.select(state => state.loading);
     this.route.params
         .map(params => params.id)
-        .do((params) => this.store.getNutrients(params))
+        .do((id) => this.store.dispatch(new Actions.FetchFood(id)))
         .subscribe();
   }
 
   addToList(): void{
-    this.store.addBasket();
+    this.store.dispatch(new Actions.AddFood());
     this.router.navigate(['myfoods']);
   }
 

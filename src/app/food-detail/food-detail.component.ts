@@ -7,7 +7,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Router } from '@angular/router';
 
 import { StoreService } from '.././services/store.service';
-
+import { Store } from "@ngrx/store";
+import * as fromRoot from ".././store/reducer";
+import * as Actions from ".././store/actions";
 
 @Component({
   selector: 'app-food-detail',
@@ -16,24 +18,27 @@ import { StoreService } from '.././services/store.service';
 })
 export class FoodDetailComponent implements OnInit {
 
-  food: BehaviorSubject<Food>;
-  loading = new BehaviorSubject<Boolean>(false);
+  food: Observable<Food>;
+  loading:  Observable<Boolean>;
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private nutritionService: NutritionService, private store: StoreService) {
+              private store: Store<fromRoot.State>) {
 
   }
 
   ngOnInit() {
-    this.food = this.store.selectedFood;
+    // this.food = this.store.selectedFood;
+    this.food = this.store.select(state => state.selectedFood);
+    this.loading = this.store.select(state => state.loading);
+
     this.route.params
         .map(params => params.id)
-        .do(params => this.store.getFoodDetail(params))
+        .do(id => this.store.dispatch(new Actions.GetFood(id)))
         .subscribe();
   }
 
   removeFromList(food: Food): void {
-    this.store.removeBasket(food);
+    this.store.dispatch(new Actions.RemoveFood(food));
     this.router.navigate(['myfoods']);
   }
 

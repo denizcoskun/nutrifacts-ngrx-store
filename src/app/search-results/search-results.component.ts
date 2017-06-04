@@ -1,9 +1,13 @@
-import { Component, OnInit, Input
- } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import { SearchResult } from "../models/search-result";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { StoreService } from ".././services/store.service";
+import { SearchResult } from '../models/search-result';
+import { Observable } from 'rxjs/Observable';
+
+import { StoreService } from '.././services/store.service';
+
+import { Store } from '@ngrx/store';
+import * as fromRoot from '.././store/reducer';
+import * as Actions from '.././store/actions';
 
 @Component({
   selector: 'app-search-results',
@@ -12,16 +16,16 @@ import { StoreService } from ".././services/store.service";
 })
 export class SearchResultsComponent implements OnInit {
 
-  results: BehaviorSubject<SearchResult[]>;
-  loading: BehaviorSubject<Boolean>;
-  
-  constructor( private store: StoreService) {
-    this.results = this.store.results;
-    this.loading = this.store.loading;
+  results: Observable<SearchResult[]>;
+  loading: Observable<Boolean>;
+
+  constructor( private store: Store<fromRoot.State>) {
+    this.results = this.store.select(state => state.results);
+    this.loading = this.store.select(state => state.loading);
    }
 
   ngOnInit() {
-   
+
   }
 
 }

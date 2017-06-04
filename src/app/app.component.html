@@ -2,12 +2,10 @@
 
 <md-toolbar color="primary">
   
-  <span>nutriFacts.io</span>
+  <span>Nutrifacts</span>
   <md-icon routerLink="myfoods" style="margin-left:auto">restaurant</md-icon>
 <md-toolbar-row>
-  <div class="search-input-container">
-    <input class="search-input" #input mdInput placeholder="Search foods..." [routerLink]="['/search']">
-  </div>
+<app-search-input></app-search-input>
   </md-toolbar-row>
 </md-toolbar>
 
