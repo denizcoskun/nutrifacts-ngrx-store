@@ -19,7 +19,7 @@ export class FoodListComponent implements OnInit {
   constructor(private store: Store<fromRoot.State>, private router: Router) { }
 
   ngOnInit() {
-    this.foodList = this.store.select(state => state.basket);;
+    this.foodList = this.store.select(state => state.foodList);;
   }
 
   removeFood(food: Food) {

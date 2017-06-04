@@ -64,7 +64,7 @@ export function reducer(state = initialState, action: FoodActions.Actions): Stat
         case FoodActions.REMOVE_FOOD: {
             return {
                 ...state,
-                basket: state.foodList.filter(food => 
+                foodList: state.foodList.filter(food => 
                 food.id !== action.payload.id)
             }
         }
