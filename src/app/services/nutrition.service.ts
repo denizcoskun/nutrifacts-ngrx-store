@@ -12,7 +12,7 @@ export class NutritionService {
   apiKey: string;
 
   constructor(private http: Http) { 
-    this.apiKey = 'KxhNfT3pMwlnn21HUCCs61iG2JwT9EmMrgOnOiU7';
+    this.apiKey = 'YOUR_API_KEY';
 
   }
 
