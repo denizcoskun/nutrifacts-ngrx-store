@@ -1,20 +1,14 @@
 <div fxFlex fxLayout="column">
+  <md-toolbar color="primary">
+    <span>Nutrifacts</span>
+    <md-icon routerLink="myfoods" style="margin-left:auto">restaurant</md-icon>
+    <md-toolbar-row>
+      <app-search-input></app-search-input>
+    </md-toolbar-row>
+  </md-toolbar>
 
-<md-toolbar color="primary">
+  <div fxFlex fxLayout="column">
+    <router-outlet></router-outlet>
+  </div>
   
-  <span>Nutrifacts</span>
-  <md-icon routerLink="myfoods" style="margin-left:auto">restaurant</md-icon>
-<md-toolbar-row>
-<app-search-input></app-search-input>
-  </md-toolbar-row>
-</md-toolbar>
-
-
-
-<div fxFlex fxLayout="column">
-
-<router-outlet></router-outlet>
-
-
-</div>
 </div>

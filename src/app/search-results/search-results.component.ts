@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { SearchResult } from '../models/search-result';
 import { Observable } from 'rxjs/Observable';
-
-import { StoreService } from '.././services/store.service';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '.././store/reducer';

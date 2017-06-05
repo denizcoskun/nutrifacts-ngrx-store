@@ -1,8 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-
-import { NutritionService } from './services/nutrition.service';
-import { StoreService } from './services/store.service';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +9,10 @@ import { StoreService } from './services/store.service';
 export class AppComponent implements OnInit {
 
 
-  constructor(private nutritionService: NutritionService, private store: StoreService) {
+  constructor() {
    }
 
   ngOnInit(): void {
-
-
   }
-
-
 
 }

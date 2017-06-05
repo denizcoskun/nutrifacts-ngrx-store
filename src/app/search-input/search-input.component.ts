@@ -22,7 +22,5 @@ export class SearchInputComponent implements OnInit {
       .do((query: string) => this.store.dispatch(new Actions.Search(query)))
       .switch()
       .subscribe();
-
     }
-
 }

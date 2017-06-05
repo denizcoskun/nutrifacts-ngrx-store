@@ -3,7 +3,6 @@
     <span style="font-weight:500">My Food List</span>
   </div>
 
-
 <md-list *ngIf="(foodList | async).length; else notfound">
   <md-list-item *ngFor="let food of foodList | async; let i = index;" [routerLink]="['/myfoods', i]">
     <div>
@@ -18,8 +17,8 @@
 </md-list>
 <ng-template #notfound>
 <div  fxLayout="column" fxLayoutAlign="start center">
-  <span style="font-size: 16px; margin: 32px 24px 12px; font-weight: 400">Search some food e.g. Yogurt, egg...</span>
-  <md-icon style="font-size:64px; height:64px; width: 64px; color:grey">search</md-icon>
+  <span class="search-info">Search some food e.g. Yogurt, egg...</span>
+  <md-icon class="search-icon">search</md-icon>
 </div>
 </ng-template>
 </div>

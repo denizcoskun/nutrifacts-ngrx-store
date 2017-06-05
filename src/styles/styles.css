@@ -14,6 +14,37 @@ html, body {
     height: 100vh;
 }
 
+tr {
+    height: 32px;
+}
+
+th {
+    font-weight: normal;
+}
+
+th.left {
+    text-align: left;
+}
+
+th.right {
+    text-align: right;
+    font-weight: 500;
+}
+
+.food-name {
+    font-size: 20px;
+    text-align: center;
+    min-height: 40px;
+    border-bottom: 1px solid;
+    margin: 24px;
+    font-weight: 500;
+}
+.nutrition-facts {
+    margin: auto;
+    width: 300px;
+}
+
+
 .search-input-container {
     width: 100%;
     background-color: white;
@@ -69,4 +100,17 @@ md-list-item span {
   padding: 16px 16px 8px;
   background: #1565c0;
   color: rgba(255, 255, 255, 0.87);
+}
+
+.search-info {
+    font-size: 16px; 
+    margin: 32px 24px 12px; 
+    font-weight: 400
+}
+
+.search-icon {
+    font-size:64px; 
+    height:64px; 
+    width: 64px; 
+    color:grey
 }
