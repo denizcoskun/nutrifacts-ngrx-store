@@ -6,9 +6,11 @@ import { Subject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
 import { Food } from '../../models/food';
 
-import { Store } from "@ngrx/store";
-import * as fromRoot from "../.././store/reducer";
-import * as Actions from "../.././store/actions";
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../.././store/reducer';
+import * as Actions from '../.././store/actions';
+
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'app-food-result',
@@ -32,8 +34,8 @@ export class FoodResultComponent implements OnInit, OnDestroy {
     this.loading = this.store.select(state => state.loading);
 
     this.route.params
-        .takeUntil(this.destroyed)
         .map(params => params.id)
+        .takeUntil(this.destroyed)
         .do((id) => this.store.dispatch(new Actions.FetchFood(id)))
         .subscribe();
   }
